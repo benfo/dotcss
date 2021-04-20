@@ -1,0 +1,74 @@
+@use '../../node_modules/sass-true' as *;
+@use "../../scss/utilities/functions" as *;
+
+$utilities: (
+  "background-color": (
+    property: background-color,
+    class: bg,
+    values: (
+      white: #fff,
+      black: #000,
+    ),
+  ),
+  "border-width": (
+    property: border-width,
+    class: border,
+    values: (
+      null: 1,
+      0: 0,
+      2: 2,
+    ),
+  ),
+  "border-top-width": (
+    property: border-top-width,
+    class: border-t,
+    values: (
+      null: 1,
+      0: 0,
+      2: 2,
+    ),
+  ),
+);
+
+@include describe("generate-utilities-map [function]") {
+  @include it("should flatten the utilities map") {
+    $expected-utilities: (
+      bg-white: (
+        properties: append((), background-color),
+        value: #fff,
+      ),
+      bg-black: (
+        properties: append((), background-color),
+        value: #000,
+      ),
+      border: (
+        properties: append((), border-width),
+        value: 1,
+      ),
+      border-0: (
+        properties: append((), border-width),
+        value: 0,
+      ),
+      border-2: (
+        properties: append((), border-width),
+        value: 2,
+      ),
+      border-t: (
+        properties: append((), border-top-width),
+        value: 1,
+      ),
+      border-t-0: (
+        properties: append((), border-top-width),
+        value: 0,
+      ),
+      border-t-2: (
+        properties: append((), border-top-width),
+        value: 2,
+      ),
+    );
+
+    $actual-utilities: generate-utilities-map($utilities);
+
+    @include assert-equal($actual-utilities, $expected-utilities);
+  }
+}

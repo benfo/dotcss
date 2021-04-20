@@ -1,0 +1,23 @@
+@use "../variables" as *;
+
+$utilities: (
+  "bold": (
+    property: font-weight,
+    class: bold,
+    values: (
+      null: bold,
+    ),
+  ),
+  "regular": (
+    property: font-weight,
+    class: regular,
+    values: (
+      null: normal,
+    ),
+  ),
+  "color": (
+    property: color,
+    class: null,
+    values: $colors,
+  ),
+);

@@ -1,0 +1,85 @@
+@use '../node_modules/sass-true' as *;
+@use "../scss/mixins" as *;
+
+@include describe("apply [mixin]") {
+  $utilities-map: (
+    size-lg: (
+      properties: font-size,
+      value: 2rem,
+    ),
+    px-2: (
+      properties: padding-top padding-bottom,
+      value: 2px,
+    ),
+  );
+
+  @include it("should include a single property") {
+    @include assert {
+      @include output {
+        @include apply(size-lg, $utilities-map);
+      }
+
+      @include expect {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  @include it("should include multiple properties") {
+    @include assert {
+      @include output {
+        @include apply(px-2, $utilities-map);
+      }
+
+      @include expect {
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+    }
+  }
+
+  @include it("should include properties from all classes provided") {
+    @include assert {
+      @include output {
+        @include apply(px-2 size-lg, $utilities-map);
+      }
+
+      @include expect {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@include describe("generate-utilities [mixin]") {
+  $utilities-map: (
+    size-lg: (
+      properties: font-size,
+      value: 2rem,
+    ),
+    px-2: (
+      properties: padding-top padding-bottom,
+      value: 2px,
+    ),
+  );
+
+  @include it("should generate all the utility classes") {
+    @include assert {
+      @include output {
+        @include generate-utilities($utilities-map);
+      }
+
+      @include expect {
+        &.size-lg {
+          font-size: 2rem;
+        }
+        &.px-2 {
+          padding-top: 2px;
+          padding-bottom: 2px;
+        }
+      }
+    }
+  }
+}

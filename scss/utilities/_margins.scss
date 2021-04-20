@@ -1,0 +1,51 @@
+@use "../variables" as *;
+
+$utilities: (
+  "margin": (
+    property: margin,
+    class: m,
+    values: $spacers,
+  ),
+  "margin-top": (
+    property: margin-top,
+    class: mt,
+    values: $spacers,
+  ),
+  "margin-right": (
+    property: margin-right,
+    class: mr,
+    values: $spacers,
+  ),
+  "margin-bottom": (
+    property: margin-bottom,
+    class: mb,
+    values: $spacers,
+  ),
+  "margin-left": (
+    property: margin-left,
+    class: ml,
+    values: $spacers,
+  ),
+  "margin-x": (
+    property: margin-left margin-right,
+    class: mx,
+    values:
+      map-merge(
+        $spacers,
+        (
+          "auto": auto,
+        )
+      ),
+  ),
+  "margin-y": (
+    property: margin-top margin-bottom,
+    class: my,
+    values:
+      map-merge(
+        $spacers,
+        (
+          "auto": auto,
+        )
+      ),
+  ),
+);

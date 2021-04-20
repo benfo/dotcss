@@ -1,0 +1,39 @@
+@use "../variables" as *;
+
+$utilities: (
+  "border-width": (
+    property: border-width,
+    class: border,
+    values: (
+      null: 1px,
+      2: 2px,
+      4: 4px,
+      8: 8px,
+    ),
+  ),
+  "border-color": (
+    property: border-color,
+    class: border,
+    values: $colors,
+  ),
+  "border-style": (
+    property: border-style,
+    class: border,
+    values: (
+      "solid": solid,
+      "dashed": dashed,
+      "dotted": dotted,
+      "double": double,
+      "none": none,
+    ),
+  ),
+  "border-radius": (
+    property: border-radius,
+    class: null,
+    values: (
+      "rounded-none": 0px,
+      "rounded": 0.25rem,
+      "rounded-md": 0.375rem,
+    ),
+  ),
+);

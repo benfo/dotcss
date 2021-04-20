@@ -1,0 +1,13 @@
+$utilities: (
+  "position": (
+    property: position,
+    class: null,
+    values: (
+      static: static,
+      fixed: fixed,
+      absolute: absolute,
+      relative: relative,
+      sticky: sticky,
+    ),
+  ),
+);

@@ -1,0 +1,9 @@
+@use "../variables" as *;
+
+$utilities: (
+  "background-color": (
+    property: background-color,
+    class: bg,
+    values: $colors,
+  ),
+);

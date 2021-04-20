@@ -1,0 +1,15 @@
+@use "functions" as *;
+@use "layouts";
+@use "padding";
+@use "margins";
+@use "typography";
+@use "backgrounds";
+@use "borders";
+
+$map: ();
+$map: map-merge($map, generate-utilities-map(layouts.$utilities));
+$map: map-merge($map, generate-utilities-map(padding.$utilities));
+$map: map-merge($map, generate-utilities-map(margins.$utilities));
+$map: map-merge($map, generate-utilities-map(typography.$utilities));
+$map: map-merge($map, generate-utilities-map(backgrounds.$utilities));
+$map: map-merge($map, generate-utilities-map(borders.$utilities));

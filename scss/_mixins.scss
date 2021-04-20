@@ -1,0 +1,34 @@
+@use "utilities" as utils;
+
+@mixin apply($classes, $utilities-map: utils.$map) {
+  @if type-of($classes) == "string" {
+    $classes: append((), $classes);
+  }
+
+  @each $class in $classes {
+    @if map-has-key($utilities-map, $class) {
+      $utility: map-get($utilities-map, $class);
+      $properties: map-get($utility, properties);
+      $value: map-get($utility, value);
+
+      @each $property in $properties {
+        #{$property}: #{$value};
+      }
+    } @else {
+      @warn "Class #{$class} not found.";
+    }
+  }
+}
+
+@mixin generate-utilities($utilities-map: ()) {
+  @each $class, $utility in $utilities-map {
+    #{if(&, '&.#{$class}', '.#{$class}')} {
+      $properties: map-get($utility, properties);
+      $value: map-get($utility, value);
+
+      @each $property in $properties {
+        #{$property}: #{$value};
+      }
+    }
+  }
+}

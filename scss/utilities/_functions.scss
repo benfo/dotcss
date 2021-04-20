@@ -1,0 +1,38 @@
+@function build-class-name($class, $suffix) {
+  @if $suffix == null {
+    @return #{$class};
+  }
+  @if $class == null {
+    @return #{$suffix};
+  }
+  @return #{$class}-#{$suffix};
+}
+
+@function to-list($value) {
+  @if type-of($value) == "string" {
+    @return append((), $value);
+  }
+  @return $value;
+}
+
+@function generate-utilities-map($utilities) {
+  $flat-map: ();
+  @each $utility-key, $utility in $utilities {
+    @each $suffix, $value in map-get($utility, "values") {
+      $class: map-get($utility, "class");
+      $properties: to-list(map-get($utility, property));
+
+      $flat-map: map-merge(
+        $flat-map,
+        (
+          build-class-name($class, $suffix): (
+            properties: $properties,
+            value: $value,
+          ),
+        )
+      );
+    }
+  }
+
+  @return $flat-map;
+}
